@@ -1,0 +1,107 @@
+* {
+  box-sizing: border-box;
+}
+
+.logInSIgnUpPage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 32px;
+  border-radius: 32px;
+  background: #121827;
+  padding: 120px;
+  width: 1440px;
+  height: 1024px;
+  overflow: hidden;
+
+  .frame18 {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    align-self: stretch;
+
+    .frame20 {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      align-self: stretch;
+      padding-right: 515px;
+      padding-bottom: 186px;
+
+      .lima {
+        width: 69px;
+        height: 25px;
+      }
+
+      .aIPoweredGrowthOs {
+        margin: 12px 0px 0px;
+        line-height: 17px;
+        letter-spacing: 0;
+        color: #ffffff;
+        font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+        font-size: 14px;
+      }
+    }
+
+    .frame22 {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      align-self: stretch;
+      justify-content: flex-end;
+      margin-top: 304px;
+      padding-top: 57px;
+      padding-right: 200px;
+      height: 240px;
+      row-gap: 10px;
+
+      .tiredOfSoundingLikeA {
+        flex-shrink: 0;
+        align-self: stretch;
+        letter-spacing: 0;
+        color: #ffffff;
+        font-family: Inter, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimHei, Arial, Helvetica, sans-serif;
+        font-size: 24px;
+      }
+
+      .frame23 {
+        display: inline-flex;
+        flex-shrink: 0;
+        align-items: flex-start;
+        align-self: stretch;
+        column-gap: 10px;
+        margin-right: 404px;
+
+        .rectangle1 {
+          flex-shrink: 0;
+          border-radius: 999px;
+          background: #ffffff;
+          width: 8px;
+          height: 8px;
+        }
+
+        .rectangle5 {
+          flex-shrink: 0;
+          border-radius: 999px;
+          background: #ff6200;
+          width: 8px;
+          height: 8px;
+        }
+      }
+    }
+  }
+
+  .mainDashboardCompone {
+    display: flex;
+    flex-shrink: 0;
+    align-items: flex-start;
+    align-self: stretch;
+    column-gap: 10px;
+    border-radius: 32px;
+    background: #ffffff;
+    padding: 22px 20px;
+    width: 502px;
+    overflow: hidden;
+  }
+}
