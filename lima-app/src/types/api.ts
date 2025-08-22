@@ -236,6 +236,7 @@ export interface StyleAnalysis {
   response_length: 'brief' | 'medium' | 'detailed';
   formality_score: number;
   enthusiasm_score: number;
+  confidence_score?: number;
 }
 
 // AI processing types

@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Store email account in database
-    const { data: emailAccount, error } = await supabase
+    const { data: emailAccount, error } = await (supabase as any)
       .from('email_accounts')
       .insert({
         user_id: userId,

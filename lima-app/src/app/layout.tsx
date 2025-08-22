@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+// import { Inter } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from '@/components/providers/auth-provider';
 import { ToastProvider } from '@/components/providers/toast-provider';
 import { RealtimeProvider } from '@/components/providers/realtime-provider';
 import { ThemeProvider } from '@/components/providers/theme-provider';
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   variable: "--font-inter",
+// });
 
 export const metadata: Metadata = {
   title: "Lima - AI Growth Operating System",
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full" data-theme="light">
       <body
-        className={`${inter.variable} font-sans antialiased h-full lima-body`}
+        className="font-sans antialiased h-full lima-body"
       >
         <ThemeProvider>
           <AuthProvider>

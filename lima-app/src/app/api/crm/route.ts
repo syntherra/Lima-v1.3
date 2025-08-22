@@ -90,7 +90,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (type === 'company') {
-      const { data: company, error } = await supabase
+      const { data: company, error } = await (supabase as any)
         .from('companies')
         .insert({
           name: data.name,
@@ -116,7 +116,7 @@ export async function POST(request: NextRequest) {
         data: company,
       });
     } else if (type === 'contact') {
-      const { data: contact, error } = await supabase
+      const { data: contact, error } = await (supabase as any)
         .from('contacts')
         .insert({
           company_id: data.company_id,
@@ -170,7 +170,7 @@ export async function PUT(request: NextRequest) {
     }
 
     if (type === 'company') {
-      const { data: company, error } = await supabase
+      const { data: company, error } = await (supabase as any)
         .from('companies')
         .update(data)
         .eq('id', id)
@@ -190,7 +190,7 @@ export async function PUT(request: NextRequest) {
         data: company,
       });
     } else if (type === 'contact') {
-      const { data: contact, error } = await supabase
+      const { data: contact, error } = await (supabase as any)
         .from('contacts')
         .update(data)
         .eq('id', id)

@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Verify email account belongs to user
-    const { data: emailAccount, error } = await supabase
+    const { data: emailAccount, error } = await (supabase as any)
       .from('email_accounts')
       .select('*')
       .eq('id', emailAccountId)
@@ -65,7 +65,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Get all email accounts for user
-    const { data: emailAccounts, error } = await supabase
+    const { data: emailAccounts, error } = await (supabase as any)
       .from('email_accounts')
       .select('id, email_address, provider, is_connected, last_synced')
       .eq('user_id', userId)

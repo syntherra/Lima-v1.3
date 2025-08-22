@@ -83,10 +83,10 @@ export async function GET(request: NextRequest) {
 
     // Calculate metrics
     const totalEmails = emails?.length || 0;
-    const sentEmails = emails?.filter(e => e.direction === 'outbound')?.length || 0;
-    const openedEmails = emails?.filter(e => e.opened_at)?.length || 0;
-    const repliedEmails = emails?.filter(e => e.replied_at)?.length || 0;
-    const aiSentEmails = emails?.filter(e => e.is_from_ai)?.length || 0;
+    const sentEmails = (emails || []).filter((e: any) => e.direction === 'outbound').length;
+    const openedEmails = (emails || []).filter((e: any) => e.opened_at).length;
+    const repliedEmails = (emails || []).filter((e: any) => e.replied_at).length;
+    const aiSentEmails = (emails || []).filter((e: any) => e.is_from_ai).length;
 
     // Calculate previous period for trends
     const prevStartDate = new Date(startDate.getTime() - daysAgo * 24 * 60 * 60 * 1000);
@@ -97,7 +97,7 @@ export async function GET(request: NextRequest) {
       .lt('created_at', startDate.toISOString())
       .eq('campaigns.user_id', userId);
 
-    const prevSentEmails = prevEmails?.filter(e => e.direction === 'outbound')?.length || 0;
+    const prevSentEmails = (prevEmails || []).filter((e: any) => e.direction === 'outbound').length;
     const trendPercentage = prevSentEmails > 0 
       ? ((sentEmails - prevSentEmails) / prevSentEmails) * 100 
       : 0;
@@ -112,19 +112,19 @@ export async function GET(request: NextRequest) {
       },
       campaign_performance: {
         total_campaigns: campaigns?.length || 0,
-        active_campaigns: campaigns?.filter(c => c.status === 'active')?.length || 0,
+        active_campaigns: (campaigns || []).filter((c: any) => c.status === 'active').length,
         open_rate: sentEmails > 0 ? Math.round((openedEmails / sentEmails) * 100 * 10) / 10 : 0,
         reply_rate: sentEmails > 0 ? Math.round((repliedEmails / sentEmails) * 100 * 10) / 10 : 0,
         conversion_rate: sentEmails > 0 ? Math.round((repliedEmails / sentEmails) * 100 * 10) / 10 : 0,
       },
-      ai_activity: (aiActions || []).map(action => ({
+      ai_activity: (aiActions || []).map((action: any) => ({
         id: action.id,
         type: action.type,
         message: `${action.type.replace('_', ' ')} - ${action.reason || 'AI action performed'}`,
         timestamp: action.timestamp,
         confidence: action.confidence,
       })),
-      insights: (insights || []).map(insight => ({
+      insights: (insights || []).map((insight: any) => ({
         id: insight.id,
         message: insight.message,
         type: insight.insight_type,

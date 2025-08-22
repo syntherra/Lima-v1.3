@@ -56,7 +56,7 @@ export async function GET(request: NextRequest) {
       analytics: analyticsData || [],
       campaigns: campaigns || [],
       totalCampaigns: campaigns?.length || 0,
-      activeCampaigns: campaigns?.filter(c => c.status === 'active').length || 0,
+      activeCampaigns: (campaigns || []).filter((c: any) => c.status === 'active').length,
     };
 
     const aiService = new DeepSeekService();
@@ -64,7 +64,7 @@ export async function GET(request: NextRequest) {
 
     // Store insights in database
     const insightPromises = insights.map((insight, index) => 
-      supabase
+      (supabase as any)
         .from('ai_insights')
         .insert({
           user_id: userId,
@@ -119,7 +119,7 @@ export async function PATCH(request: NextRequest) {
     }
 
     if (action === 'dismiss') {
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('ai_insights')
         .update({ is_dismissed: true })
         .eq('id', insightId);

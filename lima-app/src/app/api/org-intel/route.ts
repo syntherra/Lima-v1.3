@@ -226,20 +226,16 @@ Please analyze and return a JSON object with:
 }`;
 
   try {
-    const response = await deepSeekService.makeRequest({
-      model: 'deepseek-chat',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an organizational structure analyst. Analyze contact lists and determine company hierarchy and decision-making structures.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
-      temperature: 0.3,
-    });
+    const response = await deepSeekService.generateResponse([
+      {
+        role: 'system',
+        content: 'You are an organizational structure analyst. Analyze contact lists and determine company hierarchy and decision-making structures.'
+      },
+      {
+        role: 'user',
+        content: prompt
+      }
+    ], 0.3);
 
     const content = response.choices[0]?.message?.content;
     if (content) {
@@ -308,20 +304,16 @@ Please recommend the optimal email routing path and return JSON:
 }`;
 
   try {
-    const response = await deepSeekService.makeRequest({
-      model: 'deepseek-chat',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an expert email routing strategist. Recommend optimal contact paths based on organizational intelligence.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
-      temperature: 0.4,
-    });
+    const response = await deepSeekService.generateResponse([
+      {
+        role: 'system',
+        content: 'You are an expert email routing strategist. Recommend optimal contact paths based on organizational intelligence.'
+      },
+      {
+        role: 'user',
+        content: prompt
+      }
+    ], 0.4);
 
     const content = response.choices[0]?.message?.content;
     if (content) {

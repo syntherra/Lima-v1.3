@@ -30,7 +30,7 @@ export class EmailServiceFactory {
   static async syncEmails(userId: string, emailAccountId: string) {
     try {
       // Get email account
-      const { data: emailAccount, error } = await supabase
+      const { data: emailAccount, error } = await (supabase as any)
         .from('email_accounts')
         .select('*')
         .eq('id', emailAccountId)
@@ -79,7 +79,7 @@ export class EmailServiceFactory {
       }
 
       // Update last synced timestamp
-      await supabase
+      await (supabase as any)
         .from('email_accounts')
         .update({ last_synced: new Date().toISOString() })
         .eq('id', emailAccountId);

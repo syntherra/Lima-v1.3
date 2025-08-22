@@ -8,11 +8,13 @@ import {
   Campaign, 
   Email, 
   Task, 
-  Project,
+  Project
+} from './database';
+import {
   CampaignMetrics,
   EmailTemplate,
-  TargetProfile 
-} from './database';
+  TargetProfile
+} from './api';
 
 // Layout and navigation types
 export interface NavItem {

@@ -57,11 +57,9 @@ export async function POST(request: NextRequest) {
     // Process each email for task extraction
     for (const email of emails) {
       try {
-        const tasks = await deepSeekService.extractTasks(
-          email.subject,
-          email.body,
-          project.name
-        );
+        const emailContent = `Subject: ${email.subject}\n\nBody: ${email.body}\n\nProject Context: ${project.name}`;
+        const taskResult = await deepSeekService.extractTasks(emailContent);
+        const tasks = taskResult.has_tasks ? taskResult.tasks : [];
 
         for (const taskData of tasks) {
           // Create task in database
@@ -76,7 +74,7 @@ export async function POST(request: NextRequest) {
               status: 'pending',
               extracted_from_email: true,
               email_id: email.id,
-              ai_confidence_score: taskData.confidence_score,
+              ai_confidence_score: taskData.confidence,
             })
             .select()
             .single();

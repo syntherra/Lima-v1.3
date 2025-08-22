@@ -7,3 +7,5 @@ export { Progress, progressVariants, type ProgressProps } from './progress';
 export { Separator } from './separator';
 export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 export { Textarea, textareaVariants, type TextareaProps } from './textarea';
+export { ScrollArea, ScrollBar } from './scroll-area';
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './tooltip';

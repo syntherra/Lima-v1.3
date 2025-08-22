@@ -25,7 +25,6 @@ export class DeepSeekService {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          model: config.ai.deepseek.model,
           max_tokens: config.ai.deepseek.maxTokens,
           temperature: config.ai.deepseek.temperature,
           ...request,
@@ -362,6 +361,17 @@ Please analyze and return a JSON object with the following structure:
       console.error('Error parsing style analysis:', error);
       throw error;
     }
+  }
+
+  async generateResponse(messages: Array<{role: 'system' | 'user' | 'assistant'; content: string}>, temperature: number = 0.3): Promise<any> {
+    const request: DeepSeekAPIRequest = {
+      model: config.ai.deepseek.model,
+      messages,
+      temperature,
+    };
+
+    const response = await this.makeRequest(request);
+    return response;
   }
 
   async mirrorWritingStyle(originalText: string, styleProfile: any, targetType: string = 'email'): Promise<string> {

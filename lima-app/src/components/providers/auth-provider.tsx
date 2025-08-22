@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User } from '@supabase/supabase-js';
+import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/lib/supabase';
 import { useRouter } from 'next/navigation';
 
@@ -9,7 +9,7 @@ interface AuthContextType {
   user: User | null;
   loading: boolean;
   signInWithEmail: (email: string, password: string) => Promise<void>;
-  signUpWithEmail: (email: string, password: string, userData?: { name: string; company?: string }) => Promise<void>;
+  signUpWithEmail: (email: string, password: string, userData?: { name: string; company?: string }) => Promise<{ user: User | null; session: Session | null; }>;
   signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
 }

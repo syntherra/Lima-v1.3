@@ -130,7 +130,7 @@ export async function PATCH(request: NextRequest) {
       .eq('id', task_id)
       .single();
 
-    if (!task || task.project?.user_id !== user.id) {
+    if (!task || (task as any).project?.user_id !== user.id) {
       return NextResponse.json({ error: 'Task not found' }, { status: 404 });
     }
 

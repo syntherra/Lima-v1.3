@@ -34,6 +34,60 @@ interface Task {
   ai_confidence_score?: number;
 }
 
+// Utility functions
+const getStatusIcon = (status: string) => {
+  switch (status) {
+    case 'completed':
+      return <CheckCircle className="h-4 w-4 text-green-600" />;
+    case 'in_progress':
+      return <Play className="h-4 w-4 text-blue-600" />;
+    case 'blocked':
+      return <AlertTriangle className="h-4 w-4 text-red-600" />;
+    default:
+      return <Circle className="h-4 w-4 text-gray-400" />;
+  }
+};
+
+const getStatusColor = (status: string) => {
+  switch (status) {
+    case 'completed':
+      return 'bg-green-50 border-green-200';
+    case 'in_progress':
+      return 'bg-blue-50 border-blue-200';
+    case 'blocked':
+      return 'bg-red-50 border-red-200';
+    case 'pending':
+      return 'bg-yellow-50 border-yellow-200';
+    default:
+      return 'bg-gray-50 border-gray-200';
+  }
+};
+
+const getPriorityColor = (priority: string) => {
+  switch (priority) {
+    case 'high':
+      return 'text-red-600 bg-red-100';
+    case 'medium':
+      return 'text-yellow-600 bg-yellow-100';
+    case 'low':
+      return 'text-green-600 bg-green-100';
+    default:
+      return 'text-gray-600 bg-gray-100';
+  }
+};
+
+const formatDate = (dateString?: string) => {
+  if (!dateString) return 'No due date';
+  const date = new Date(dateString);
+  const now = new Date();
+  const diffInDays = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+  
+  if (diffInDays < 0) return `${Math.abs(diffInDays)} days overdue`;
+  if (diffInDays === 0) return 'Due today';
+  if (diffInDays === 1) return 'Due tomorrow';
+  return `Due in ${diffInDays} days`;
+};
+
 interface TaskListProps {
   tasks: Task[];
   onTaskUpdate: (projectId: string) => void;
@@ -44,58 +98,9 @@ export default function TaskList({ tasks, onTaskUpdate, projectId }: TaskListPro
   const [selectedTasks, setSelectedTasks] = useState<string[]>([]);
   const [viewMode, setViewMode] = useState<'all' | 'ai' | 'manual'>('all');
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return <CheckCircle className="h-4 w-4 text-green-600" />;
-      case 'in_progress':
-        return <Play className="h-4 w-4 text-blue-600" />;
-      case 'blocked':
-        return <AlertTriangle className="h-4 w-4 text-red-600" />;
-      default:
-        return <Circle className="h-4 w-4 text-gray-400" />;
-    }
-  };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'completed':
-        return 'bg-green-50 border-green-200';
-      case 'in_progress':
-        return 'bg-blue-50 border-blue-200';
-      case 'blocked':
-        return 'bg-red-50 border-red-200';
-      case 'pending':
-        return 'bg-yellow-50 border-yellow-200';
-      default:
-        return 'bg-gray-50 border-gray-200';
-    }
-  };
 
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'high':
-        return 'text-red-600 bg-red-100';
-      case 'medium':
-        return 'text-yellow-600 bg-yellow-100';
-      case 'low':
-        return 'text-green-600 bg-green-100';
-      default:
-        return 'text-gray-600 bg-gray-100';
-    }
-  };
 
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return 'No due date';
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffInDays = Math.ceil((date.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-    
-    if (diffInDays < 0) return `${Math.abs(diffInDays)} days overdue`;
-    if (diffInDays === 0) return 'Due today';
-    if (diffInDays === 1) return 'Due tomorrow';
-    return `Due in ${diffInDays} days`;
-  };
 
   const updateTaskStatus = async (taskId: string, newStatus: string) => {
     try {
@@ -318,32 +323,4 @@ function TaskItem({ task, onStatusUpdate, isSelected, onSelect }: TaskItemProps)
       </div>
     </div>
   );
-}
-
-function getStatusColor(status: string) {
-  switch (status) {
-    case 'completed':
-      return 'bg-green-50 border-green-200';
-    case 'in_progress':
-      return 'bg-blue-50 border-blue-200';
-    case 'blocked':
-      return 'bg-red-50 border-red-200';
-    case 'pending':
-      return 'bg-yellow-50 border-yellow-200';
-    default:
-      return 'bg-gray-50 border-gray-200';
-  }
-}
-
-function getPriorityColor(priority: string) {
-  switch (priority) {
-    case 'high':
-      return 'text-red-600 bg-red-100';
-    case 'medium':
-      return 'text-yellow-600 bg-yellow-100';
-    case 'low':
-      return 'text-green-600 bg-green-100';
-    default:
-      return 'text-gray-600 bg-gray-100';
-  }
 }

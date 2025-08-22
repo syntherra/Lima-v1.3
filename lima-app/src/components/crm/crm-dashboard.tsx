@@ -361,7 +361,7 @@ export default function CRMDashboard({ className }: CRMDashboardProps) {
                 {['all', 'prospect', 'engaged', 'customer'].map((filter) => (
                   <Button
                     key={filter}
-                    variant={selectedFilter === filter ? 'default' : 'outline'}
+                    variant={selectedFilter === filter ? 'primary' : 'outline'}
                     size="sm"
                     onClick={() => setSelectedFilter(filter)}
                   >
