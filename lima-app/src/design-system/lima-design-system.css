@@ -1,0 +1,906 @@
+/* ========================================
+   LIMA MINIMAL DESIGN SYSTEM
+   Clean • Professional • Intuitive
+======================================== */
+
+:root {
+  /* === MINIMAL COLOR PALETTE === */
+  --lima-gray-50: #FAFAFA;
+  --lima-gray-100: #F5F5F5;
+  --lima-gray-200: #E5E5E5;
+  --lima-gray-300: #D4D4D4;
+  --lima-gray-400: #A3A3A3;
+  --lima-gray-500: #737373;
+  --lima-gray-600: #525252;
+  --lima-gray-700: #404040;
+  --lima-gray-800: #262626;
+  --lima-gray-900: #171717;
+  --lima-white: #FFFFFF;
+
+  /* Single Professional Accent */
+  --lima-blue-500: #3B82F6;
+  --lima-blue-600: #2563EB;
+  --lima-green-500: #10B981;
+  --lima-red-500: #EF4444;
+  --lima-amber-500: #F59E0B;
+
+  /* === SEMANTIC COLORS === */
+  --lima-primary: var(--lima-blue-500);
+  --lima-success: var(--lima-green-500);
+  --lima-warning: var(--lima-amber-500);
+  --lima-error: var(--lima-red-500);
+  --lima-text-primary: var(--lima-gray-900);
+  --lima-text-secondary: var(--lima-gray-600);
+  --lima-text-muted: var(--lima-gray-500);
+  --lima-border: var(--lima-gray-200);
+  --lima-bg-primary: var(--lima-white);
+  --lima-bg-secondary: var(--lima-gray-50);
+
+  /* === TYPOGRAPHY === */
+  --lima-font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --lima-text-xs: 0.75rem;
+  --lima-text-sm: 0.875rem;
+  --lima-text-base: 1rem;
+  --lima-text-lg: 1.125rem;
+  --lima-text-xl: 1.25rem;
+  --lima-text-2xl: 1.5rem;
+  --lima-text-3xl: 1.875rem;
+  --lima-weight-normal: 400;
+  --lima-weight-medium: 500;
+  --lima-weight-semibold: 600;
+  --lima-weight-bold: 700;
+
+  /* === SPACING === */
+  --lima-space-1: 0.25rem;
+  --lima-space-2: 0.5rem;
+  --lima-space-3: 0.75rem;
+  --lima-space-4: 1rem;
+  --lima-space-5: 1.25rem;
+  --lima-space-6: 1.5rem;
+  --lima-space-8: 2rem;
+  --lima-space-10: 2.5rem;
+  --lima-space-12: 3rem;
+
+  /* === DESIGN TOKENS === */
+  --lima-radius-sm: 0.375rem;
+  --lima-radius-md: 0.5rem;
+  --lima-radius-lg: 0.75rem;
+  --lima-radius-xl: 1rem;
+  --lima-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --lima-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --lima-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --lima-transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --lima-transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   GLOBAL STYLES
+======================================== */
+* { box-sizing: border-box; }
+
+html {
+  font-family: var(--lima-font-primary);
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--lima-bg-secondary);
+  color: var(--lima-text-primary);
+  font-size: var(--lima-text-base);
+  line-height: 1.6;
+  font-weight: var(--lima-weight-normal);
+}
+
+/* ========================================
+   TYPOGRAPHY CLASSES
+======================================== */
+.lima-text-xs {
+  font-size: var(--lima-text-xs);
+  font-weight: var(--lima-weight-normal);
+  line-height: 1.4;
+}
+
+.lima-text-sm {
+  font-size: var(--lima-text-sm);
+  font-weight: var(--lima-weight-normal);
+  line-height: 1.5;
+}
+
+.lima-text-base {
+  font-size: var(--lima-text-base);
+  font-weight: var(--lima-weight-normal);
+  line-height: 1.6;
+}
+
+.lima-text-lg {
+  font-size: var(--lima-text-lg);
+  font-weight: var(--lima-weight-medium);
+  line-height: 1.6;
+}
+
+.lima-text-xl {
+  font-size: var(--lima-text-xl);
+  font-weight: var(--lima-weight-semibold);
+  line-height: 1.4;
+}
+
+.lima-text-2xl {
+  font-size: var(--lima-text-2xl);
+  font-weight: var(--lima-weight-semibold);
+  line-height: 1.3;
+}
+
+.lima-text-3xl {
+  font-size: var(--lima-text-3xl);
+  font-weight: var(--lima-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.lima-text-primary { color: var(--lima-text-primary); }
+.lima-text-secondary { color: var(--lima-text-secondary); }
+.lima-text-muted { color: var(--lima-text-muted); }
+.lima-text-white { color: var(--lima-white); }
+.lima-text-blue { color: var(--lima-primary); }
+
+/* ========================================
+   MINIMAL CARDS
+======================================== */
+.lima-card {
+  background: var(--lima-bg-primary);
+  border: 1px solid var(--lima-border);
+  border-radius: var(--lima-radius-lg);
+  box-shadow: var(--lima-shadow-sm);
+  transition: all var(--lima-transition-normal);
+}
+
+.lima-card:hover {
+  box-shadow: var(--lima-shadow-md);
+  border-color: var(--lima-gray-300);
+}
+
+.lima-card-header {
+  padding: var(--lima-space-6);
+  border-bottom: 1px solid var(--lima-border);
+}
+
+.lima-card-content {
+  padding: var(--lima-space-6);
+}
+
+.lima-metric-card {
+  background: var(--lima-bg-primary);
+  border: 1px solid var(--lima-border);
+  border-radius: var(--lima-radius-lg);
+  box-shadow: var(--lima-shadow-sm);
+  transition: all var(--lima-transition-normal);
+}
+
+.lima-metric-card:hover {
+  box-shadow: var(--lima-shadow-md);
+  transform: translateY(-1px);
+}
+
+/* ========================================
+   MINIMAL BUTTONS
+======================================== */
+.lima-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--lima-space-2);
+  padding: var(--lima-space-3) var(--lima-space-4);
+  border-radius: var(--lima-radius-md);
+  font-family: var(--lima-font-primary);
+  font-size: var(--lima-text-sm);
+  font-weight: var(--lima-weight-medium);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--lima-transition-fast);
+  text-decoration: none;
+}
+
+.lima-btn-primary {
+  background: var(--lima-primary);
+  color: var(--lima-white);
+  border-color: var(--lima-primary);
+}
+
+.lima-btn-primary:hover {
+  background: var(--lima-blue-600);
+  border-color: var(--lima-blue-600);
+}
+
+.lima-btn-secondary {
+  background: var(--lima-bg-primary);
+  color: var(--lima-text-primary);
+  border-color: var(--lima-border);
+}
+
+.lima-btn-secondary:hover {
+  background: var(--lima-gray-50);
+  border-color: var(--lima-gray-300);
+}
+
+.lima-btn-ghost {
+  background: transparent;
+  color: var(--lima-text-secondary);
+  border-color: transparent;
+}
+
+.lima-btn-ghost:hover {
+  background: var(--lima-gray-100);
+  color: var(--lima-text-primary);
+}
+
+/* ========================================
+   MINIMAL FORMS
+======================================== */
+.lima-input {
+  width: 100%;
+  padding: var(--lima-space-3) var(--lima-space-4);
+  background: var(--lima-bg-primary);
+  border: 1px solid var(--lima-border);
+  border-radius: var(--lima-radius-md);
+  font-family: var(--lima-font-primary);
+  font-size: var(--lima-text-sm);
+  color: var(--lima-text-primary);
+  transition: all var(--lima-transition-fast);
+}
+
+.lima-input:focus {
+  outline: none;
+  border-color: var(--lima-primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.lima-label {
+  display: block;
+  font-size: var(--lima-text-sm);
+  font-weight: var(--lima-weight-medium);
+  color: var(--lima-text-primary);
+  margin-bottom: var(--lima-space-2);
+}
+
+/* ========================================
+   MINIMAL NAVIGATION
+======================================== */
+.lima-sidebar {
+  background: var(--lima-bg-primary);
+  width: 280px;
+  min-height: 100vh;
+  border-right: 1px solid var(--lima-border);
+}
+
+.lima-nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--lima-space-3);
+  padding: var(--lima-space-3) var(--lima-space-4);
+  border-radius: var(--lima-radius-md);
+  color: var(--lima-text-secondary);
+  text-decoration: none;
+  transition: all var(--lima-transition-fast);
+  margin-bottom: var(--lima-space-1);
+  font-size: var(--lima-text-sm);
+  font-weight: var(--lima-weight-medium);
+}
+
+.lima-nav-item:hover {
+  background: var(--lima-gray-100);
+  color: var(--lima-text-primary);
+}
+
+.lima-nav-item-active {
+  background: var(--lima-gray-100);
+  color: var(--lima-primary);
+  border-left: 3px solid var(--lima-primary);
+}
+
+.lima-nav-item-inactive {
+  color: var(--lima-text-secondary);
+}
+
+.lima-header {
+  background: var(--lima-bg-primary);
+  border-bottom: 1px solid var(--lima-border);
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--lima-space-6);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+/* ========================================
+   LAYOUT UTILITIES
+======================================== */
+.lima-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--lima-space-6);
+}
+
+.lima-grid {
+  display: grid;
+  gap: var(--lima-space-6);
+}
+
+.lima-grid-4 { grid-template-columns: repeat(4, 1fr); }
+.lima-grid-3 { grid-template-columns: repeat(3, 1fr); }
+.lima-grid-2 { grid-template-columns: repeat(2, 1fr); }
+
+.lima-flex {
+  display: flex;
+  gap: var(--lima-space-4);
+}
+
+.lima-flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 768px) {
+  .lima-grid-4, .lima-grid-3, .lima-grid-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .lima-sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+}
+
+/* ========================================
+   MINIMAL AUTHENTICATION
+======================================== */
+.lima-auth-layout {
+  min-height: 100vh;
+  background: var(--lima-bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--lima-space-6);
+}
+
+.lima-auth-container {
+  background: var(--lima-bg-primary);
+  border: 1px solid var(--lima-border);
+  border-radius: var(--lima-radius-xl);
+  padding: var(--lima-space-8);
+  box-shadow: var(--lima-shadow-lg);
+  max-width: 420px;
+  width: 100%;
+}
+
+.lima-logo-auth {
+  width: 48px;
+  height: 48px;
+  background: var(--lima-primary);
+  border-radius: var(--lima-radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lima-white);
+  font-size: var(--lima-text-xl);
+  font-weight: var(--lima-weight-bold);
+  margin: 0 auto var(--lima-space-6);
+}
+
+.lima-logo-text {
+  font-size: 1.5rem;
+  font-weight: var(--lima-weight-bold);
+}
+
+.lima-auth-header {
+  text-align: center;
+  margin-bottom: var(--lima-space-8);
+}
+
+.lima-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lima-space-6);
+}
+
+.lima-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--lima-space-4);
+}
+
+.lima-divider {
+  position: relative;
+  text-align: center;
+  margin: var(--lima-space-6) 0;
+}
+
+.lima-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(45, 50, 56, 0.2);
+}
+
+.lima-divider-text {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0 var(--lima-space-4);
+  color: var(--lima-slate);
+  font-size: 0.75rem;
+}
+
+.lima-link {
+  color: var(--lima-electric);
+  text-decoration: none;
+  font-weight: var(--lima-weight-medium);
+  transition: color var(--lima-transition-fast);
+}
+
+.lima-link:hover {
+  color: var(--lima-violet);
+}
+
+/* ========================================
+   MINIMAL DASHBOARD
+======================================== */
+.lima-dashboard {
+  background: var(--lima-bg-secondary);
+  min-height: 100vh;
+}
+
+.lima-dashboard-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  min-height: 100vh;
+}
+
+.lima-loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16rem;
+}
+
+.lima-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--lima-border);
+  border-top-color: var(--lima-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* ========================================
+   MODERN ANIMATIONS & MICRO-INTERACTIONS
+======================================== */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.4);
+  }
+  50% { 
+    box-shadow: 0 0 0 8px rgba(0, 212, 255, 0);
+  }
+}
+
+@keyframes slide-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from { 
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Animation Classes */
+.lima-animate-slide-up {
+  animation: slide-in-up 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lima-animate-slide-right {
+  animation: slide-in-right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lima-animate-fade-in {
+  animation: fade-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lima-animate-scale-in {
+  animation: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lima-animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Enhanced Button Interactions */
+.lima-btn:active {
+  transform: scale(0.98);
+}
+
+.lima-btn-primary:hover {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Enhanced Card Interactions */
+.lima-glass-card {
+  transition: all var(--lima-transition-normal);
+}
+
+.lima-glass-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+}
+
+.lima-metric-card:hover {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Loading Shimmer Effect */
+.lima-shimmer {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.lima-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+/* Page Transition Effects */
+.lima-page-enter {
+  animation: fade-in 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.lima-modal-enter {
+  animation: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Staggered Animation Support */
+.lima-stagger-item:nth-child(1) { animation-delay: 0ms; }
+.lima-stagger-item:nth-child(2) { animation-delay: 100ms; }
+.lima-stagger-item:nth-child(3) { animation-delay: 200ms; }
+.lima-stagger-item:nth-child(4) { animation-delay: 300ms; }
+.lima-stagger-item:nth-child(5) { animation-delay: 400ms; }
+
+/* Hover Enhancement Utilities */
+.lima-hover-lift {
+  transition: all var(--lima-transition-fast);
+}
+
+.lima-hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.lima-hover-glow {
+  transition: all var(--lima-transition-fast);
+}
+
+.lima-hover-glow:hover {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+.lima-error-state {
+  text-align: center;
+  padding: var(--lima-space-12);
+}
+
+.lima-empty-state {
+  text-align: center;
+  padding: var(--lima-space-12);
+}
+
+/* ========================================
+   COMPONENT CARDS
+======================================== */
+.lima-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--lima-radius-lg);
+  box-shadow: var(--lima-shadow-lg);
+  transition: all var(--lima-transition-normal);
+}
+
+.lima-card:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--lima-shadow-xl);
+}
+
+.lima-card-header {
+  padding: var(--lima-space-6) var(--lima-space-6) 0;
+}
+
+.lima-card-content {
+  padding: var(--lima-space-6);
+}
+
+.lima-card-title {
+  font-size: var(--lima-text-h2);
+  font-weight: var(--lima-weight-semibold);
+  color: var(--lima-neural);
+  margin: 0;
+}
+
+.lima-card-crm {
+  border-left: 4px solid var(--lima-electric);
+}
+
+.lima-card-campaign {
+  border-left: 4px solid var(--lima-emerald);
+}
+
+.lima-card-email {
+  border-left: 4px solid var(--lima-violet);
+}
+
+.lima-card-metric {
+  background: var(--lima-gradient-primary);
+  color: var(--lima-white);
+  border: none;
+}
+
+/* ========================================
+   MINIMAL TABLE COMPONENTS
+======================================== */
+.lima-table-container {
+  overflow-x: auto;
+  background: var(--lima-bg-primary);
+  border: 1px solid var(--lima-border);
+  border-radius: var(--lima-radius-lg);
+  box-shadow: var(--lima-shadow-sm);
+}
+
+.lima-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.lima-table-head {
+  background: var(--lima-gray-50);
+}
+
+.lima-table-header {
+  padding: var(--lima-space-4) var(--lima-space-6);
+  text-align: left;
+  font-weight: var(--lima-weight-semibold);
+  color: var(--lima-text-primary);
+  font-size: var(--lima-text-xs);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.lima-table-body {
+  background: var(--lima-bg-primary);
+}
+
+.lima-table-row {
+  transition: all var(--lima-transition-fast);
+}
+
+.lima-table-row:hover {
+  background: var(--lima-gray-50);
+}
+
+.lima-table-cell {
+  padding: var(--lima-space-4) var(--lima-space-6);
+  border-bottom: 1px solid var(--lima-border);
+  font-size: var(--lima-text-sm);
+  color: var(--lima-text-primary);
+}
+
+/* ========================================
+   MINIMAL STATUS BADGES
+======================================== */
+.lima-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem var(--lima-space-3);
+  border-radius: 9999px;
+  font-size: var(--lima-text-xs);
+  font-weight: var(--lima-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lima-tag-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--lima-success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.lima-tag-warning {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--lima-warning);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.lima-tag-error {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--lima-error);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.lima-tag-accent {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--lima-primary);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.lima-tag-neutral {
+  background: var(--lima-gray-100);
+  color: var(--lima-text-secondary);
+  border: 1px solid var(--lima-border);
+}
+
+/* ========================================
+   MINIMAL UTILITY CLASSES
+======================================== */
+.lima-text-metric {
+  font-size: var(--lima-text-2xl);
+  font-weight: var(--lima-weight-bold);
+  line-height: 1.2;
+}
+
+.lima-text-caption {
+  font-size: var(--lima-text-xs);
+  font-weight: var(--lima-weight-normal);
+}
+
+.lima-bg-primary { background: var(--lima-bg-primary); }
+.lima-bg-secondary { background: var(--lima-bg-secondary); }
+.lima-bg-accent { background: var(--lima-primary); }
+.lima-bg-accent-light { background: rgba(59, 130, 246, 0.1); }
+.lima-bg-success { background: var(--lima-success); }
+
+.lima-w-full { width: 100%; }
+.lima-h-full { height: 100%; }
+.lima-rounded { border-radius: var(--lima-radius-md); }
+
+.lima-sidebar-header {
+  background: var(--lima-bg-primary);
+  border-bottom: 1px solid var(--lima-border);
+}
+
+.lima-sidebar-footer {
+  border-top: 1px solid var(--lima-border);
+  margin-top: auto;
+}
+
+.lima-layout {
+  background: var(--lima-bg-secondary);
+}
+
+/* ========================================
+   ADDITIONAL MINIMAL COMPONENTS
+======================================== */
+.lima-insight-card {
+  background: var(--lima-gray-50);
+  border: 1px solid var(--lima-border);
+  border-radius: var(--lima-radius-md);
+  padding: var(--lima-space-4);
+}
+
+.lima-btn-tab {
+  background: transparent;
+  border: none;
+  padding: var(--lima-space-3) var(--lima-space-4);
+  border-radius: var(--lima-radius-md);
+  cursor: pointer;
+  transition: all var(--lima-transition-fast);
+  color: var(--lima-text-secondary);
+  font-size: var(--lima-text-sm);
+  font-weight: var(--lima-weight-medium);
+}
+
+.lima-btn-tab-active {
+  background: var(--lima-gray-100);
+  color: var(--lima-primary);
+}
+
+.lima-btn-tab-inactive {
+  color: var(--lima-text-secondary);
+}
+
+.lima-btn-tab-inactive:hover {
+  background: var(--lima-gray-100);
+  color: var(--lima-text-primary);
+}
+
+.lima-empty-state {
+  text-align: center;
+  padding: var(--lima-space-12);
+  color: var(--lima-text-secondary);
+}
+
+.lima-divider {
+  position: relative;
+  text-align: center;
+  margin: var(--lima-space-6) 0;
+}
+
+.lima-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--lima-border);
+}
+
+.lima-divider-text {
+  background: var(--lima-bg-primary);
+  padding: 0 var(--lima-space-4);
+  color: var(--lima-text-secondary);
+  font-size: var(--lima-text-xs);
+}
+
+.lima-link {
+  color: var(--lima-primary);
+  text-decoration: none;
+  font-weight: var(--lima-weight-medium);
+  transition: color var(--lima-transition-fast);
+}
+
+.lima-link:hover {
+  color: var(--lima-blue-600);
+}

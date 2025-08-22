@@ -1,0 +1,128 @@
+@import "tailwindcss";
+@import "../design-system/lima-design-system.css";
+
+/* Modern Design Tokens for Tailwind CSS v4 */
+@layer base {
+  :root {
+    /* Primary Colors */
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary Colors */
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    
+    /* AI Colors */
+    --ai-50: 240 100% 98%;
+    --ai-100: 240 100% 95%;
+    --ai-200: 240 96% 89%;
+    --ai-300: 240 86% 82%;
+    --ai-400: 240 75% 72%;
+    --ai-500: 240 67% 62%;
+    --ai-600: 240 57% 52%;
+    --ai-700: 240 47% 42%;
+    --ai-800: 240 37% 32%;
+    --ai-900: 240 27% 22%;
+    --ai-950: 240 17% 12%;
+    
+    /* Success Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    
+    /* Warning Colors */
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    
+    /* Destructive Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Background Colors */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    
+    /* Muted Colors */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    /* Accent Colors */
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    
+    /* Card Colors */
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    
+    /* Border & Input */
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    
+    /* Radius */
+    --radius: 0.75rem;
+  }
+  
+  .dark {
+    --primary: 220 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --ai-50: 240 17% 12%;
+    --ai-100: 240 27% 22%;
+    --ai-200: 240 37% 32%;
+    --ai-300: 240 47% 42%;
+    --ai-400: 240 57% 52%;
+    --ai-500: 240 67% 62%;
+    --ai-600: 240 75% 72%;
+    --ai-700: 240 86% 82%;
+    --ai-800: 240 96% 89%;
+    --ai-900: 240 100% 95%;
+    --ai-950: 240 100% 98%;
+    
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Dark theme specific backgrounds */
+    --background: 0 0% 16%; /* #2a2a2a - Dark background surrounding main content */
+    --foreground: 0 0% 98%;
+    
+    --muted: 0 0% 10%; /* #1a1a1a - Dark sidebar color */
+    --muted-foreground: 0 0% 65%;
+    
+    --accent: 0 0% 10%;
+    --accent-foreground: 0 0% 98%;
+    
+    /* Card remains light for content areas */
+    --card: 0 0% 100%; /* White background for main content */
+    --card-foreground: 222.2 84% 4.9%;
+    
+    --border: 0 0% 20%;
+    --input: 0 0% 10%;
+    --ring: 0 0% 83%;
+    
+    /* Additional dark theme variables */
+    --sidebar-bg: 0 0% 10%; /* #1a1a1a */
+    --main-bg: 0 0% 16%; /* #2a2a2a */
+    --content-bg: 0 0% 100%; /* #ffffff */
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: var(--lima-font-primary);
+  }
+}

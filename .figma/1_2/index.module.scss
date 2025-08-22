@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+.desktop1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 32px;
+  background: #252525;
+  padding: 20px;
+  width: 1440px;
+  height: 1024px;
+  overflow: hidden;
+
+  .sidebar {
+    flex-shrink: 0;
+    align-self: stretch;
+    border-radius: 32px;
+    background: #353535;
+    width: 243px;
+    overflow: hidden;
+  }
+
+  .mainDashboardCompone {
+    flex-grow: 1;
+    align-self: stretch;
+    border-radius: 32px;
+    background: #ffffff;
+    overflow: hidden;
+  }
+}
