@@ -1,16 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { useLimaStatesStore, useActiveState, useCurrentState, useActiveMenuItems, useLimaStatesActions } from '@/stores/lima-states-store';
-import { LIMA_STATES_ARRAY } from '@/constants/lima-states';
+import { LIMA_STATES_ARRAY, LIMA_STATES } from '@/constants/lima-states';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 
 interface LimaSidebarProps {
   className?: string;
@@ -18,12 +18,33 @@ interface LimaSidebarProps {
 
 export function LimaSidebar({ className }: LimaSidebarProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const isSidebarCollapsed = useLimaStatesStore(state => state.isSidebarCollapsed);
   const activeState = useActiveState();
   const currentState = useCurrentState();
   const activeMenuItems = useActiveMenuItems();
   const activeMenuItem = useLimaStatesStore(state => state.activeMenuItem);
   const { setActiveState, setActiveMenuItem, toggleSidebar, navigateToState } = useLimaStatesActions();
+
+  // Auto-detect active state and menu item based on current pathname
+  useEffect(() => {
+    // Find the matching state and menu item based on current pathname
+    for (const [stateId, state] of Object.entries(LIMA_STATES)) {
+      for (const menuItem of state.menuItems) {
+        if (pathname === menuItem.route) {
+          // Only update if different from current state
+          if (activeState !== stateId) {
+            setActiveState(stateId as any);
+          }
+          // Only update if different from current menu item
+          if (activeMenuItem !== menuItem.id) {
+            setActiveMenuItem(menuItem.id);
+          }
+          return;
+        }
+      }
+    }
+  }, [pathname, activeState, activeMenuItem, setActiveState, setActiveMenuItem]);
 
   const handleStateChange = (stateId: string) => {
     setActiveState(stateId as any);

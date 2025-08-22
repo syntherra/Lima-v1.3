@@ -14,7 +14,7 @@ export default function HomePage() {
       if (user) {
         // Only redirect if we're actually on the home page
         if (window.location.pathname === '/') {
-          router.push('/dashboard');
+          router.push('/mail/inbox');
         }
       } else {
         router.push('/auth/signin');
