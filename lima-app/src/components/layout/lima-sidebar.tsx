@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { useLimaStatesStore, useActiveState, useCurrentState, useActiveMenuItems, useLimaStatesActions } from '@/stores/lima-states-store';
+import { useEmailViewStore } from '@/stores/email-view-store';
 import { LIMA_STATES_ARRAY, LIMA_STATES } from '@/constants/lima-states';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -25,6 +26,7 @@ export function LimaSidebar({ className }: LimaSidebarProps) {
   const activeMenuItems = useActiveMenuItems();
   const activeMenuItem = useLimaStatesStore(state => state.activeMenuItem);
   const { setActiveState, setActiveMenuItem, toggleSidebar, navigateToState } = useLimaStatesActions();
+  const { setActiveView } = useEmailViewStore();
 
   // Auto-detect active state and menu item based on current pathname
   useEffect(() => {
@@ -40,11 +42,16 @@ export function LimaSidebar({ className }: LimaSidebarProps) {
           if (activeMenuItem !== menuItem.id) {
             setActiveMenuItem(menuItem.id);
           }
+          // For mail routes, also update the email view store
+          if (stateId === 'mail' && menuItem.route.startsWith('/mail/')) {
+            const emailView = menuItem.route.replace('/mail/', '') as any;
+            setActiveView(emailView);
+          }
           return;
         }
       }
     }
-  }, [pathname, activeState, activeMenuItem, setActiveState, setActiveMenuItem]);
+  }, [pathname, activeState, activeMenuItem, setActiveState, setActiveMenuItem, setActiveView]);
 
   const handleStateChange = (stateId: string) => {
     setActiveState(stateId as any);
@@ -58,7 +65,17 @@ export function LimaSidebar({ className }: LimaSidebarProps) {
     setActiveMenuItem(itemId);
     const menuItem = activeMenuItems.find(item => item.id === itemId);
     if (menuItem) {
-      router.push(menuItem.route);
+      // Check if this is a mail-related menu item
+      if (activeState === 'mail' && menuItem.route.startsWith('/mail/')) {
+        // Extract the email view from the route (e.g., '/mail/inbox' -> 'inbox')
+        const emailView = menuItem.route.replace('/mail/', '') as any;
+        setActiveView(emailView);
+        // Always navigate to the specific mail route
+        router.push(menuItem.route);
+      } else {
+        // For non-mail items, use normal routing
+        router.push(menuItem.route);
+      }
     }
   };
 

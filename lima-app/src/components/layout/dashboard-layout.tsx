@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { LimaSidebar } from '@/components/layout/lima-sidebar';
 import { ProfileDropdown } from '@/components/layout/profile-dropdown';
 import { Search, Bell } from 'lucide-react';
@@ -11,21 +12,65 @@ interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 
+// Function to generate breadcrumbs based on pathname
+function generateBreadcrumbs(pathname: string) {
+  const segments = pathname.split('/').filter(Boolean);
+  
+  if (segments.length === 0) {
+    return [{ label: 'Dashboard', isActive: true }];
+  }
+  
+  const breadcrumbs = [{ label: 'Dashboard', isActive: false }];
+  
+  // Handle mail routes
+  if (segments[0] === 'mail') {
+    if (segments.length === 1) {
+      breadcrumbs.push({ label: 'Mail', isActive: true });
+    } else {
+      breadcrumbs.push({ label: 'Mail', isActive: false });
+      const mailSection = segments[1];
+      const sectionLabel = mailSection.charAt(0).toUpperCase() + mailSection.slice(1);
+      breadcrumbs.push({ label: sectionLabel, isActive: true });
+    }
+  }
+  // Handle other routes
+  else {
+    segments.forEach((segment, index) => {
+      const isLast = index === segments.length - 1;
+      const label = segment.charAt(0).toUpperCase() + segment.slice(1).replace('-', ' ');
+      breadcrumbs.push({ label, isActive: isLast });
+    });
+  }
+  
+  return breadcrumbs;
+}
+
 export function DashboardLayout({ children }: DashboardLayoutProps) {
+  const pathname = usePathname();
+  const breadcrumbs = generateBreadcrumbs(pathname);
   return (
-    <div className="h-screen flex overflow-hidden bg-gray-950">
+    <div className="h-screen flex overflow-hidden bg-gray-900">
       {/* Lima Sidebar - Full Height */}
       <LimaSidebar />
       
       {/* Main content area */}
       <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Dark Top Navigation Bar */}
+        {/* Top Navigation Bar */}
         <div className="h-16 bg-gray-900 border-b border-gray-800 flex items-center justify-between px-6">
           {/* Left side - Breadcrumbs */}
           <div className="flex items-center space-x-2">
-            <span className="text-sm text-gray-400">Dashboard</span>
-            <span className="text-sm text-gray-600">/</span>
-            <span className="text-sm text-white font-medium">Inbox</span>
+            {breadcrumbs.map((crumb, index) => (
+              <React.Fragment key={index}>
+                {index > 0 && <span className="text-sm text-gray-500">/</span>}
+                <span className={`text-sm ${
+                  crumb.isActive 
+                    ? 'text-white font-medium' 
+                    : 'text-gray-300'
+                }`}>
+                  {crumb.label}
+                </span>
+              </React.Fragment>
+            ))}
           </div>
           
           {/* Right side - Search, Notifications, User */}
@@ -35,7 +80,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
               <Input 
                 placeholder="Search..."
-                className="pl-10 w-64 bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-orange-500"
+                className="pl-10 w-64 bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-blue-500"
               />
             </div>
             

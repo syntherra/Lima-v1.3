@@ -44,7 +44,8 @@ import {
   FolderOpen,
   UserCheck,
   AlertCircle,
-
+  Edit3,
+  Settings,
   Flag,
   Tag,
   Timer,
@@ -60,16 +61,16 @@ const mailState: LimaState = {
   defaultRoute: '/mail/inbox',
   description: 'Email management and communication',
   menuItems: [
+    { id: 'compose', label: 'Compose', icon: Edit3, route: '/mail/compose', description: 'Compose new email' },
     { id: 'inbox', label: 'Inbox', icon: Inbox, route: '/mail/inbox', description: 'View incoming emails' },
     { id: 'sent', label: 'Sent', icon: Send, route: '/mail/sent', description: 'View sent emails' },
     { id: 'drafts', label: 'Drafts', icon: FileText, route: '/mail/drafts', description: 'View draft emails' },
-    { id: 'deleted', label: 'Deleted Items', icon: Trash2, route: '/mail/deleted', description: 'View deleted emails' },
-    { id: 'spam', label: 'Spam', icon: Shield, route: '/mail/spam', description: 'View spam emails' },
-    { id: 'folders', label: 'Folders', icon: Folder, route: '/mail/folders', description: 'Organize emails in folders' },
-    { id: 'pinned', label: 'Pinned', icon: Pin, route: '/mail/pinned', description: 'View pinned emails' },
+    { id: 'starred', label: 'Starred', icon: Star, route: '/mail/starred', description: 'View starred emails' },
+    { id: 'important', label: 'Important', icon: Flag, route: '/mail/important', description: 'View important emails' },
     { id: 'archive', label: 'Archive', icon: Archive, route: '/mail/archive', description: 'View archived emails' },
-    { id: 'templates', label: 'Templates', icon: FileText, route: '/mail/templates', description: 'Email templates' },
-    { id: 'signatures', label: 'Signatures', icon: PenTool, route: '/mail/signatures', description: 'Email signatures' }
+    { id: 'spam', label: 'Spam', icon: Shield, route: '/mail/spam', description: 'View spam emails' },
+    { id: 'trash', label: 'Trash', icon: Trash2, route: '/mail/trash', description: 'View deleted emails' },
+    { id: 'settings', label: 'Settings', icon: Settings, route: '/mail/settings', description: 'Email settings and Gmail pairing' }
   ]
 };
 

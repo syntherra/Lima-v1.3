@@ -9,3 +9,5 @@ export { Tabs, TabsList, TabsTrigger, TabsContent } from './tabs';
 export { Textarea, textareaVariants, type TextareaProps } from './textarea';
 export { ScrollArea, ScrollBar } from './scroll-area';
 export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './tooltip';
+export { Label } from './label';
+export { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuCheckboxItem, DropdownMenuSeparator } from './dropdown-menu';
